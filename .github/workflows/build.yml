@@ -23,7 +23,7 @@ jobs:
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
-          registry: docker.pkg.github.com
+          registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
 
@@ -31,7 +31,7 @@ jobs:
         id: docker-tags
         uses: crazy-max/ghaction-docker-meta@v1
         with:
-          images: filiptepper/checkcheckcheck
+          images: ghcr.io/filiptepper/checkcheckcheck
 
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v2
