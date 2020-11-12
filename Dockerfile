@@ -1,6 +1,7 @@
 FROM alpine:latest
 
 ENV _VERSION_TFLINT=0.20.3
+ENV _VERSION_TERRAFORM=0.13.5
 
 RUN mkdir -p /opt/checkcheckcheck/bin
 
@@ -9,5 +10,13 @@ RUN cd /tmp && \
   unzip tflint_linux_amd64.zip && \
   mv tflint /opt/checkcheckcheck/bin && \
   rm tflint_linux_amd64.zip
+
+RUN cd /tmp && \
+  wget "https://releases.hashicorp.com/terraform/${_VERSION_TERRAFORM}/terraform_${_VERSION_TERRAFORM}_linux_amd64.zip" && \
+  unzip "terraform_${_VERSION_TERRAFORM}_linux_amd64.zip" && \
+  mv terraform /opt/checkcheckcheck/bin && \
+  rm "terraform_${_VERSION_TERRAFORM}_linux_amd64.zip"
+
+ENV PATH="/opt/checkcheckcheck/bin:${PATH}"
 
 WORKDIR /opt/checkcheckcheck/bin
