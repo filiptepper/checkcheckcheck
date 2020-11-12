@@ -28,6 +28,7 @@ jobs:
           password: ${{ secrets.CR_PAT }}
 
       - name: Docker image tags
+        id: docker-tags
         uses: crazy-max/ghaction-docker-meta@v1
         with:
           images: filiptepper/checkcheckcheck
@@ -39,4 +40,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ steps.docker_meta.outputs.tags }}
+          tags: ${{ steps.docker-tags.outputs.tags }}
