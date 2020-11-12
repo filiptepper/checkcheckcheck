@@ -32,6 +32,8 @@ jobs:
         uses: crazy-max/ghaction-docker-meta@v1
         with:
           images: ghcr.io/filiptepper/checkcheckcheck
+          tag-match-latest: true
+          tag-sha: true
 
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v2
