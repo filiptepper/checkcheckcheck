@@ -27,14 +27,6 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
 
-      - name: Docker image tags
-        id: docker-tags
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          images: ghcr.io/filiptepper/checkcheckcheck
-          tag-match-latest: true
-          tag-sha: true
-
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v2
         with:
@@ -42,4 +34,6 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ steps.docker-tags.outputs.tags }}
+          tags: |
+            ghcr.io/filiptepper/checkcheckcheck:latest
+            ghcr.io/filiptepper/checkcheckcheck:${{ github.sha }}
