@@ -8,6 +8,7 @@ RUN mkdir -p /opt/checkcheckcheck/bin
 
 RUN apk add --no-cache git
 RUN apk add --no-cache bash
+RUN apk add --no-cache nodejs npm
 
 RUN cd /tmp && \
   wget "https://github.com/terraform-linters/tflint/releases/download/v${_VERSION_TFLINT}/tflint_linux_amd64.zip" && \
